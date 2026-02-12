@@ -1,0 +1,13 @@
+---
+apiVersion: kubearchive.org/v1
+kind: KubeArchiveConfig
+metadata:
+  name: mintmaker
+  namespace: default
+spec:
+  resources:
+    - selector:
+        apiVersion: tekton.dev/v1
+        kind: PipelineRun
+      archiveWhen: has(status.completionTime) 
+      archiveOnDelete: 'true'
